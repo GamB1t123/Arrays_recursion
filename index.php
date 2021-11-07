@@ -17,45 +17,28 @@ for ($i = 0; $i < $number; $i++){
 }
 //2.Создайте в цикле (for либо while) одномерный массив из 10 элементов,
 // где значение на каждой итерации - произвольное число от 1 до 10 (используйте функцию mt_rand)
-function printArr(array $arr) {
-    foreach ($arr as $value)
-        echo $value . '<br/>';
-}
+
 $arr = [];
 for ($j = 0; $j <= 10; $j++) {
-    $value = mt_rand(1, 10);
-    $arr[] = $value;
+    $arr[] = mt_rand(1, 10);
 }
 echo '<pre>';
 print_r($arr);
 echo '</pre>';
-//3.Выведите все чётные и все нечётные элементы массива из задания 3
-$arr1 = [1, 2, 3, 7, 31, 4, 1, 8, 6];
-foreach ($arr1 as $key => $value) {
-    if (($value + 1) % 2 == 0) {
-        echo   $value . '<br>';
-    }
-    if (($value +1) % 2 !=0) {
-        echo $value . '<br>';
+//3.Выведите все чётные и все нечётные элементы массива из задания 2
+foreach ($arr as $key => $value) {
+    if ($value % 2 != 0) {
+        echo "$value <br>";
     }
 }
-//4.Отсортируйте массив из задания 3 по ключу в обратном порядке
-$firstArr = [
-
-    'one' => 1,
-
-    'two' => 2,
-
-    'three' => 3,
-
-    'foure' => 5,
-
-    'five' => 12,
-
-];
-
-ksort($firstArr);
-    foreach ($firstArr as $key => $value)
+    foreach ($arr as $k =>$v) {
+        if ($v % 2 == 0) {
+            echo  "$v <br>";
+        }
+    }
+//4.Отсортируйте массив из задания 2 по ключу в обратном порядке
+sort($arr);
+    foreach ($arr as $key => $value)
     {
       echo  "$key = $value\n";
     }
@@ -63,8 +46,8 @@ ksort($firstArr);
 
 //5.Отсортируйте массив из задания 3 по значению в обратном порядке
 echo '<br>';
-rsort($firstArr);
-    foreach ( $firstArr as $key => $value)
+rsort($arr);
+    foreach ( $arr as $key => $value)
     {
         echo "$key = $value\n";
     }
@@ -74,60 +57,32 @@ rsort($firstArr);
 
 $someArr = ['Bob','Alfred','Lily','Maks','Bill','Mark'];
 echo '<br>';
-    $key1 = array_flip($someArr);
-    var_dump($key1);
-
-
+    $swap = array_flip($someArr);
+    var_dump($swap);
 
 //7.Создайте двумерный массив и переберите его циклами foreach, for и while
 echo '<br>';
-$ThirdArr = [
-
-    'one' => 1,
-
-    'two' => [
-
-        'one' => 1,
-
-        'seven' => 22,
-
-        'three' => 32,
-    ],
-
-    '   three' => [
-
-        'one' => 1,
-
-        'two' => 2,
-
-    ],
-
-    'four' => 5,
-
-    'five' => [
-
-        'three' => 32,
-
-        'four' => 5,
-
-        'five' => 12,
-
-    ],
-
-];
-
-for ($j = 0; $j <= count($ThirdArr); $j++);
-echo $j;
-echo '<br>';
-foreach ($ThirdArr as $value)
-{
-    echo "{$value['five']}";
+$ThirdArr = [1,[2,3],4];
+function sumArr($ThirdArr) {
+    $sum = 0;
+    foreach($ThirdArr as $values) {
+        if (is_array($values)) {
+            $sum += sumArr($values);
+        } else {
+            $sum += $values;
+        }
+    }
+    return $sum;
 }
-echo '<br>';
-$g = 0;
-while ($g <= count($ThirdArr)) {
-    $g++;
-    echo "{$g}\n";
+ echo sumArr($ThirdArr);
+for ($f = 0; $f < count($ThirdArr); ++$f) {
+    echo '<br>';
+    echo $f;
 }
-
+$h = 0;
+while ($h <= count($ThirdArr)){
+    $h++;
+    echo '<br>';
+    echo $h;
+}
 
